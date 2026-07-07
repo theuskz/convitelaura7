@@ -1,0 +1,88 @@
+*{
+
+.countdown span{
+  font-size:28px;
+  font-weight:bold;
+}
+
+.countdown p{
+  font-size:12px;
+  margin-top:5px;
+}
+
+.buttons{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.buttons button{
+  padding:14px 28px;
+  border:none;
+  border-radius:999px;
+  background:rgba(255,255,255,0.15);
+  color:white;
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.buttons button:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,0.25);
+}
+
+.particles::before,
+.particles::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+  radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+
+  background-size:80px 80px;
+  animation:particlesMove 20s linear infinite;
+  opacity:0.4;
+}
+
+@keyframes particlesMove{
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(-200px);
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:768px){
+
+  h1{
+    font-size:52px;
+  }
+
+  h2{
+    font-size:24px;
+  }
+
+  .countdown div{
+    width:75px;
+    height:75px;
+  }
+
+}
+}

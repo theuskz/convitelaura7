@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lista de Presentes - Laura XV</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+
+            background-image: url(video/3.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            /* Centraliza o conteúdo vertical e horizontalmente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Faixas rosas superiores */
+        .top-ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 220px;
+            height: 220px;
+            pointer-events: none;
+        }
+
+        #voltarBtn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+
+            width: 50px;
+            height: 50px;
+
+            border: 1px solid rgba(255, 192, 203, .4);
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            /* Suporte para Safari (iOS) */
+
+            color: #fff;
+            font-size: 24px;
+
+            cursor: pointer;
+            z-index: 99999;
+
+            box-shadow:
+                0 0 20px rgba(255, 192, 203, .25),
+                inset 0 0 10px rgba(255, 255, 255, .05);
+
+            transition: .3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #voltarBtn:hover {
+            transform: scale(1.08);
+            background: rgba(255, 192, 203, .15);
+            box-shadow:
+                0 0 30px rgba(255, 192, 203, .5),
+                0 0 10px rgba(255, 255, 255, .2);
+        }
+
+        /* Container principal ajustado */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            /* Largura ideal para leitura e clique */
+            padding: 40px 24px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* Logo XV */
+        .logo {
+            position: relative;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo .xv {
+            font-family: 'Cinzel', serif;
+            font-size: 110px;
+            color: #d47aa4;
+            line-height: 1;
+            font-weight: 700;
+            margin-bottom: 100px;
+        }
+
+        .logo .nome {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 72px;
+            color: #111;
+            white-space: nowrap;
+        }
+
+        /* Texto descritivo */
+        .descricao {
+            text-align: center;
+            color: #000000;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 55px;
+            padding: 0 10px;
+            margin-top: -80px;
+        }
+
+        /* Lista de Botões */
+        .lista {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            /* Espaço perfeito entre os botões */
+            margin-top: -50px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            height: 45px;
+            /* Altura ideal para clique com o polegar */
+            background: #f7b7da;
+            color: black;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, .08),
+                inset 0 1px 0 rgba(255, 255, 255, .2);
+
+            transition: transform 0.2s, background-color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            /* Remove o flash azul ao tocar no celular */
+        }
+
+        .btn:hover,
+        .btn:active {
+            background: #aa5384;
+            color: white;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            /* Efeito de clique físico no celular */
+        }
+
+        /* === Customização e Responsividade para Telas Pequenas (Celulares) === */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            #voltarBtn {
+                top: 15px;
+                right: 15px;
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+            }
+
+            .logo {
+                margin-bottom: 30px;
+            }
+
+            .logo .xv {
+                font-size: 85px;
+            }
+
+            .logo .nome {
+                font-size: 54px;
+            }
+
+            .descricao {
+                font-size: 15px;
+                margin-bottom: 25px;
+            }
+
+            .btn {
+                height: 48px;
+                /* Mantém uma área de toque excelente */
+                font-size: 14px;
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-ribbon"></div>
+
+    <div class="container">
+        <button onclick="window.location.href='index.html'" id="voltarBtn" aria-label="Voltar">
+            ✕
+        </button>
+
+        <div class="logo">
+            <div class="xv">XV</div>
+            <div class="nome">Laura Botelho</div>
+        </div>
+
+        <p class="descricao">
+            Sua presença é meu maior presente,<br>
+            mas caso queira me presentear, aqui<br>
+            estão algumas sugestões.
+        </p>
+
+        <div class="lista">
+            <a href="#" class="btn">Perfumes</a>
+            <a href="#" class="btn">Makes</a>
+            <a href="#" class="btn">Joias</a>
+            <a href="#" class="btn">Sapato 38</a>
+            <a href="#" class="btn">Roupa P/M (38)</a>
+            <a href="#" class="btn">Vale Presente</a>
+            <a href="#" class="btn">PIX: 158.621.996-08</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

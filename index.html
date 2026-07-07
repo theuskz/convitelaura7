@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Laura Botelho | XV</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Poppins:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --btn-bg: rgba(255, 255, 255, 0);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: 'Poppins', sans-serif;
+            width: 100vw;
+            height: 100vh;
+            /* Cor retirada exatamente da bordha inferior da sua foto para fusão perfeita */
+            background-color: #171114;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #171114;
+        }
+
+        /* =========================
+           TELA INICIAL
+           ========================= */
+        #startScreen {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: opacity 1s ease;
+            opacity: 1;
+        }
+
+        .startBg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        #openBtn {
+            position: relative;
+            z-index: 4;
+            padding: 18px 44px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: white;
+            font-size: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        /* =========================
+           VÍDEO INTRO
+           ========================= */
+        #intro {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: black;
+        }
+
+        #intro video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* =========================
+           SITE PRINCIPAL
+           ========================= */
+        #site {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Esse bloco agora segura a proporção da imagem sem deixar faltar espaço pros botões */
+        .invite-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--bg-overlay);
+            pointer-events: none;
+        }
+
+        /* =========================
+           EFEITO DO FLASH BRANCO
+           ========================= */
+        #flash {
+            position: absolute;
+            inset: 0;
+            background: white;
+            z-index: 5;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .brilho-ativo {
+            animation: flashAnim 1.2s ease-out forwards;
+        }
+
+        @keyframes flashAnim {
+            0% {
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 1;
+                box-shadow: inset 0 0 100px rgba(255, 255, 255, 1);
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+
+        /* PARTÍCULAS (SPARKLES) */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff8d6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff6cc;
+            animation: sparkle 5s infinite ease-in-out;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .s1 {
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .s2 {
+            top: 30%;
+            left: 80%;
+            animation-delay: 1s;
+        }
+
+        .s3 {
+            top: 55%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .s4 {
+            top: 72%;
+            left: 75%;
+            animation-delay: 1.5s;
+        }
+
+        .s5 {
+            top: 88%;
+            left: 50%;
+            animation-delay: 0.5s;
+        }
+
+        .s6 {
+            top: 40%;
+            left: 55%;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(2);
+                opacity: 1;
+            }
+        }
+
+        /* MENU DE BOTÕES INVISÍVEIS COMPATÍVEL COM QUALQUER CELULAR */
+        .menu {
+            position: absolute;
+            left: 50%;
+            bottom: max(45px, env(safe-area-inset-bottom));
+            transform: translateX(-50%);
+
+            width: calc(100% - 40px);
+            /* sempre deixa margem nas laterais */
+            max-width: 420px;
+
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+            gap: 16px;
+
+            z-index: 100;
+        }
+
+        .btn {
+            width: clamp(52px, 14vw, 60px);
+            aspect-ratio: 1;
+            flex: 0 0 auto;
+
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            text-decoration: none;
+            color: white;
+
+            font-size: clamp(26px, 6vw, 40px);
+
+            position: relative;
+
+            background: linear-gradient(to bottom,
+                    #e4b8bd 0%,
+                    #d69ba2 50%,
+                    #c9878f 100%);
+
+            border: 3px solid #efd0d4;
+
+            box-shadow:
+                0 0 0 2px #dfc1c5,
+                inset 0 2px 8px rgba(255, 255, 255, .55),
+                inset 0 -4px 8px rgba(0, 0, 0, .08);
+
+            transition: .25s ease;
+        }
+
+        /* ANEL EXTERNO */
+        .btn::before {
+            content: "";
+            position: absolute;
+            inset: -6px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(240, 210, 214, .75);
+
+            box-shadow:
+                0 0 0 8px rgba(223, 185, 190, .85),
+                inset 0 2px 8px rgba(255, 255, 255, .55),
+                inset 0 -4px 8px rgba(0, 0, 0, .08);
+        }
+
+        /* BRILHO SUPERIOR */
+        .btn::after {
+            content: "";
+            position: absolute;
+
+            width: 60%;
+            height: 22%;
+
+            top: 12%;
+            left: 20%;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, .35);
+
+            filter: blur(4px);
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+        }
+
+        .btn:active {
+            transform: scale(.96);
+        }
+
+        @media (max-width:480px) {
+            .menu {
+                width: calc(100% - 32px);
+                gap: 14px;
+            }
+
+            .btn {
+                width: 56px;
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div id="flash"></div>
+
+        <section id="startScreen">
+            <img class="startBg" src="video/Clique aqui!.png" alt="Clique aqui para entrar">
+            <button id="openBtn"></button>
+        </section>
+
+        <section id="intro">
+            <video id="introVideo" playsinline preload="auto">
+                <source src="video/Clique aqui! (2).mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <section id="site">
+            <div class="invite-container">
+                <img class="bg" src="video/inicialmente.png" alt="Fundo do Convite">
+                <div class="overlay"></div>
+
+                <div class="sparkle s1"></div>
+                <div class="sparkle s2"></div>
+                <div class="sparkle s3"></div>
+                <div class="sparkle s4"></div>
+                <div class="sparkle s5"></div>
+                <div class="sparkle s6"></div>
+
+                <div class="menu">
+                    <a class="btn"
+                        href="https://wa.me/5535992175281?text=Ol%C3%A1!%20Gostaria%20de%20confirmar%20minha%20presen%C3%A7a%20ao%20Anivers%C3%A1rio%20de%20XV%20da%20Laura%20Botelho"
+                        title="Confirmar Presença">
+                        <i class="fas fa-heart"></i>
+                    </a>
+
+                    <a class="btn" href="https://maps.app.goo.gl/nPCGXhwe9VRF65V96">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </a>
+
+                    <a class="btn" href="index2.html">
+                        <i class="fas fa-tshirt"></i>
+                    </a>
+
+                    <a class="btn" href="index3.html">
+                        <i class="fas fa-gift"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const startScreen = document.getElementById('startScreen');
+        const openBtn = document.getElementById('openBtn');
+        const video = document.getElementById('introVideo');
+        const intro = document.getElementById('intro');
+        const site = document.getElementById('site');
+        const flash = document.getElementById('flash');
+
+        if (sessionStorage.getItem('videoAssistido') === 'true') {
+            startScreen.style.display = 'none';
+            intro.style.display = 'none';
+        }
+
+        openBtn.onclick = () => {
+            video.play().catch(error => {
+                console.log("Erro ao reproduzir vídeo: ", error);
+                video.muted = true;
+                video.play();
+            });
+
+            startScreen.classList.add('fade-out');
+
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+            }, 1000);
+        };
+
+        video.ontimeupdate = () => {
+            if (video.duration - video.currentTime < 0.3) {
+                if (!flash.classList.contains('brilho-ativo')) {
+                    flash.classList.add('brilho-ativo');
+
+                    setTimeout(() => {
+                        intro.style.display = 'none';
+                    }, 300);
+                }
+            }
+        };
+
+        video.onended = () => {
+            sessionStorage.setItem('videoAssistido', 'true');
+        };
+    </script>
+
+</body>
+
+</html>
